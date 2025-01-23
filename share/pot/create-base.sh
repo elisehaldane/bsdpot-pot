@@ -95,13 +95,18 @@ _cb_tar_dir()
 # $1 base name
 _cb_base_pot()
 {
-	local _bname _pname _tmp
+	local _bname _pname _tmp _uflag
 	_bname=$1
 	_tmp=$(echo "$_bname" | sed 's/\./_/')
 	_pname="base-$_tmp"
+	if [ "${POT_BASE_UPDATE_FLAVOUR}" ]; then
+		_uflag="${POT_BASE_UPDATE_FLAVOUR}"
+	else
+		_uflag=fbsd-update
+	fi
 	_info "Create the related pot [$_pname]"
 	if ! _is_pot "$_pname" quiet ; then
-		pot-cmd create -l 0 -b "$_bname" -p "$_pname" -f fbsd-update
+		pot-cmd create -l 0 -b "$_bname" -p "$_pname" -f "$_uflag"
 	fi
 	_debug "Taking a snapshot fo $_pname"
 	_pot_zfs_snap_full "$_pname"
