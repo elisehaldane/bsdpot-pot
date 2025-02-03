@@ -976,7 +976,7 @@ _fetch_freebsd_internal()
 
 	if [ ! -r "${POT_CACHE}/${_rel}"_base.txz ]; then
 		if [ "${POT_EXTRA_MANIFEST_URL}" ]; then
-			fetch -m "${POT_EXTRA_MANIFEST_URL}"/"${_rel}"/base.txz -o "${POT_CACHE}/${_rel}"_base.txz
+			fetch -m "${POT_EXTRA_MANIFEST_URL}"/base.txz -o "${POT_CACHE}/${_rel}"_base.txz
 		else
 			fetch -m https://ftp.freebsd.org/pub/FreeBSD/releases/"$_archpath"/"${_rel}"/base.txz -o "${POT_CACHE}/${_rel}"_base.txz
 		fi
